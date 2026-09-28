@@ -26,7 +26,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.googleapis.com"
+        href="https://fonts.gstatic.com"
         crossorigin
     >
 
@@ -286,6 +286,411 @@
 
 
         /* =====================================================
+           PROFILE PORTRAIT
+        ===================================================== */
+
+        .profile-area {
+            position: relative;
+
+            width: 220px;
+
+            margin-top: 55px;
+
+            animation:
+                profileFloat
+                6s
+                ease-in-out
+                infinite;
+        }
+
+
+        /*
+           Soft animated glow behind the portrait
+        */
+
+        .profile-area::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            left: -15px;
+            top: 5px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle at 30% 30%,
+                    rgba(255, 35, 35, .35),
+                    transparent 55%
+                ),
+
+                radial-gradient(
+                    circle at 75% 70%,
+                    rgba(135, 55, 255, .30),
+                    transparent 60%
+                );
+
+            filter: blur(32px);
+
+            opacity: .65;
+
+            z-index: 0;
+
+            animation:
+                profileGlow
+                7s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        /*
+           Small lime glow that connects
+           the portrait to the website theme
+        */
+
+        .profile-area::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 45px;
+            height: 45px;
+
+            top: 20px;
+            right: -15px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(217,255,69,.25);
+
+            filter: blur(20px);
+
+            z-index: 0;
+
+            animation:
+                littleGlow
+                4s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        .profile-photo {
+
+            position: relative;
+
+            width: 190px;
+            height: 245px;
+
+            overflow: hidden;
+
+            border-radius:
+                105px
+                105px
+                25px
+                25px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            background: #161616;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.45);
+
+            z-index: 2;
+
+            isolation: isolate;
+        }
+
+
+        .profile-photo img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            opacity: .78;
+
+            filter:
+                saturate(.72)
+                contrast(1.04)
+                brightness(.82);
+
+            transition:
+                transform .8s ease,
+                opacity .8s ease,
+                filter .8s ease;
+        }
+
+
+        /*
+           Red / purple colour treatment
+        */
+
+        .profile-colour {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,35,35,.20),
+                    transparent 38%,
+                    rgba(125,55,255,.18)
+                );
+
+            mix-blend-mode: screen;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        /*
+           Subtle dark fade at bottom
+        */
+
+        .profile-fade {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 42%;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,.70)
+                );
+
+            pointer-events: none;
+
+            z-index: 3;
+        }
+
+
+        /*
+           Tiny animated highlight
+        */
+
+        .profile-shine {
+
+            position: absolute;
+
+            top: -30%;
+
+            left: -80%;
+
+            width: 45%;
+
+            height: 170%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.09),
+                    transparent
+                );
+
+            transform:
+                rotate(18deg);
+
+            z-index: 4;
+
+            pointer-events: none;
+
+            animation:
+                portraitShine
+                7s
+                ease-in-out
+                infinite;
+        }
+
+
+        .profile-area:hover
+        .profile-photo img {
+
+            transform:
+                scale(1.045);
+
+            opacity: .94;
+
+            filter:
+                saturate(.9)
+                contrast(1.06)
+                brightness(.90);
+        }
+
+
+        /*
+           Name below portrait
+        */
+
+        .profile-name {
+
+            position: relative;
+
+            z-index: 5;
+
+            margin-top: 17px;
+
+            padding-left: 2px;
+
+            animation:
+                profileName
+                1s
+                ease
+                .5s
+                both;
+        }
+
+
+        .profile-name h3 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 18px;
+
+            font-weight: 500;
+
+            letter-spacing: -.5px;
+
+            color: var(--white);
+        }
+
+
+        .profile-name span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            color: #707070;
+
+            font-size: 9px;
+
+            letter-spacing: 2.4px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           PROFILE ANIMATIONS
+        ===================================================== */
+
+        @keyframes profileFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-8px);
+            }
+        }
+
+
+        @keyframes profileGlow {
+
+            0% {
+                transform:
+                    scale(.88)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    scale(1.03)
+                    rotate(4deg);
+            }
+
+            100% {
+                transform:
+                    scale(1.12)
+                    rotate(-4deg);
+            }
+        }
+
+
+        @keyframes littleGlow {
+
+            0% {
+                transform:
+                    translate(0,0)
+                    scale(.8);
+            }
+
+            100% {
+                transform:
+                    translate(-15px,15px)
+                    scale(1.2);
+            }
+        }
+
+
+        @keyframes portraitShine {
+
+            0% {
+                left: -90%;
+            }
+
+            35%,
+            100% {
+                left: 150%;
+            }
+        }
+
+
+        @keyframes profileName {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* =====================================================
            SECTIONS
         ===================================================== */
 
@@ -388,19 +793,23 @@
         }
 
 
-        /* REMOVE ALL WEBSITE-GENERATED TEXT
-           FROM THE ACTUAL ARTWORK */
+        /*
+           IMPORTANT:
+           Nothing is placed on top of your artwork.
+        */
 
         .project-image .image-tint,
         .project-image .project-number,
         .project-image .project-title-art,
         .project-image .project-category {
+
             display: none !important;
         }
 
 
         .project-image::before,
         .project-image::after {
+
             display: none !important;
 
             content: none !important;
@@ -409,7 +818,9 @@
 
         .project:hover
         .work-photo {
-            transform: scale(1.015);
+
+            transform:
+                scale(1.015);
         }
 
 
@@ -418,6 +829,7 @@
         ===================================================== */
 
         .project-info {
+
             padding-top: 18px;
 
             margin-top: 15px;
@@ -437,6 +849,7 @@
 
 
         .project-info span:first-child {
+
             color: #777;
 
             font-size: 11px;
@@ -444,6 +857,7 @@
 
 
         .project-info h3 {
+
             font-family:
                 "Space Grotesk",
                 sans-serif;
@@ -455,6 +869,7 @@
 
 
         .view-work {
+
             display: inline-flex;
 
             align-items: center;
@@ -474,6 +889,7 @@
 
 
         .view-work::after {
+
             content: "↗";
 
             font-size: 15px;
@@ -485,6 +901,7 @@
 
         .project:hover
         .view-work::after {
+
             transform:
                 translate(3px, -3px);
         }
@@ -495,12 +912,14 @@
         ===================================================== */
 
         #about {
+
             border-top:
                 1px solid var(--line);
         }
 
 
         .about-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -513,6 +932,7 @@
 
 
         .about-text {
+
             font-size: 20px;
 
             line-height: 1.7;
@@ -522,11 +942,13 @@
 
 
         .about-text p + p {
+
             margin-top: 25px;
         }
 
 
         .stats {
+
             display: grid;
 
             grid-template-columns:
@@ -539,6 +961,7 @@
 
 
         .stat {
+
             border-top:
                 1px solid var(--line);
 
@@ -547,6 +970,7 @@
 
 
         .stat strong {
+
             display: block;
 
             font-family:
@@ -559,6 +983,7 @@
 
 
         .stat span {
+
             font-size: 9px;
 
             letter-spacing: 1px;
@@ -572,11 +997,13 @@
         ===================================================== */
 
         #services {
+
             background: #151515;
         }
 
 
         .services-list {
+
             margin-top: 70px;
 
             border-top:
@@ -585,6 +1012,7 @@
 
 
         .service {
+
             display: grid;
 
             grid-template-columns:
@@ -600,6 +1028,7 @@
 
 
         .service-number {
+
             color: #777;
 
             font-size: 11px;
@@ -607,6 +1036,7 @@
 
 
         .service h3 {
+
             font-family:
                 "Space Grotesk",
                 sans-serif;
@@ -618,6 +1048,7 @@
 
 
         .service p {
+
             max-width: 420px;
 
             color: #888;
@@ -631,6 +1062,7 @@
         ===================================================== */
 
         #skills {
+
             background: var(--lime);
 
             color: #111;
@@ -638,11 +1070,13 @@
 
 
         #skills .section-label {
+
             color: #111;
         }
 
 
         .skills-container {
+
             margin-top: 60px;
 
             display: flex;
@@ -654,6 +1088,7 @@
 
 
         .skill {
+
             border:
                 1px solid rgba(0,0,0,.3);
 
@@ -670,6 +1105,7 @@
         ===================================================== */
 
         #contact {
+
             min-height: 90vh;
 
             display: flex;
@@ -681,6 +1117,7 @@
 
 
         .contact-title {
+
             font-family:
                 "Space Grotesk";
 
@@ -701,11 +1138,13 @@
 
 
         .contact-title span {
+
             color: #666;
         }
 
 
         .contact-description {
+
             max-width: 450px;
 
             color: #999;
@@ -715,6 +1154,7 @@
 
 
         .email {
+
             display: inline-block;
 
             font-family:
@@ -741,6 +1181,7 @@
         ===================================================== */
 
         .work-lightbox {
+
             position: fixed;
 
             inset: 0;
@@ -771,6 +1212,7 @@
 
 
         .work-lightbox.open {
+
             opacity: 1;
 
             visibility: visible;
@@ -780,6 +1222,7 @@
 
 
         .lightbox-content {
+
             width: 100%;
 
             height: 100%;
@@ -797,6 +1240,7 @@
 
 
         .lightbox-content img {
+
             max-width: 95vw;
 
             max-height: 82vh;
@@ -816,6 +1260,7 @@
 
 
         .lightbox-caption {
+
             width: min(
                 95vw,
                 1100px
@@ -835,6 +1280,7 @@
 
 
         .lightbox-caption span {
+
             color: #888;
 
             font-size: 10px;
@@ -847,6 +1293,7 @@
 
 
         .lightbox-caption strong {
+
             font-family:
                 "Space Grotesk",
                 sans-serif;
@@ -858,6 +1305,7 @@
 
 
         .lightbox-close {
+
             position: absolute;
 
             top: 20px;
@@ -894,6 +1342,7 @@
 
 
         .lightbox-close:hover {
+
             background:
                 rgba(255,255,255,.18);
 
@@ -907,6 +1356,7 @@
         ===================================================== */
 
         footer {
+
             border-top:
                 1px solid var(--line);
 
@@ -931,17 +1381,20 @@
         @media (max-width: 800px) {
 
             header {
+
                 padding:
                     20px 6vw;
             }
 
 
             nav {
+
                 display: none;
             }
 
 
             .hero {
+
                 padding:
                     150px 6vw
                     80px;
@@ -949,11 +1402,55 @@
 
 
             .hero h1 {
+
                 letter-spacing: -5px;
             }
 
 
+            /*
+               Smaller portrait on phone
+            */
+
+            .profile-area {
+
+                width: 170px;
+
+                margin-top: 45px;
+            }
+
+
+            .profile-photo {
+
+                width: 155px;
+
+                height: 205px;
+
+                border-radius:
+                    90px
+                    90px
+                    22px
+                    22px;
+            }
+
+
+            .profile-area::before {
+
+                width: 200px;
+
+                height: 200px;
+
+                left: -22px;
+            }
+
+
+            .profile-name h3 {
+
+                font-size: 16px;
+            }
+
+
             .projects {
+
                 grid-template-columns: 1fr;
 
                 gap: 55px;
@@ -961,11 +1458,13 @@
 
 
             .project-image {
+
                 height: 500px;
             }
 
 
             .project-info {
+
                 grid-template-columns:
                     1fr auto;
 
@@ -976,23 +1475,27 @@
 
             .project-info
             span:first-child {
+
                 grid-column:
                     1 / -1;
             }
 
 
             .project-info h3 {
+
                 font-size: 17px;
             }
 
 
             .view-work {
+
                 justify-self:
                     end;
             }
 
 
             .about-grid {
+
                 grid-template-columns: 1fr;
 
                 gap: 50px;
@@ -1000,12 +1503,14 @@
 
 
             .stats {
+
                 grid-template-columns:
                     repeat(3, 1fr);
             }
 
 
             .service {
+
                 grid-template-columns:
                     1fr;
 
@@ -1014,11 +1519,13 @@
 
 
             .contact-title {
+
                 letter-spacing: -4px;
             }
 
 
             .lightbox-content img {
+
                 max-width: 96vw;
 
                 max-height: 78vh;
@@ -1026,6 +1533,7 @@
 
 
             .lightbox-caption {
+
                 flex-direction:
                     column;
 
@@ -1037,11 +1545,13 @@
 
 
             .lightbox-caption strong {
+
                 font-size: 16px;
             }
 
 
             .lightbox-close {
+
                 top: 12px;
 
                 right: 12px;
@@ -1055,12 +1565,14 @@
 
 
             footer {
+
                 flex-direction: column;
 
                 gap: 10px;
             }
 
         }
+
 
     </style>
 
@@ -1070,7 +1582,9 @@
 <body>
 
 
-    <!-- CUSTOM CURSOR -->
+    <!-- =====================================================
+         CUSTOM CURSOR
+    ===================================================== -->
 
     <div class="cursor"></div>
 
@@ -1141,10 +1655,65 @@
 
 
             <p class="hero-description">
+
                 I create visual identities, church and ministry
                 graphics, event campaigns, promotional designs
                 and responsive digital experiences.
+
             </p>
+
+
+            <!-- =================================================
+                 PROFILE PORTRAIT
+            ================================================= -->
+
+            <div class="profile-area">
+
+                <div class="profile-photo">
+
+                    <!--
+                        PUT YOUR PHOTO IN YOUR GITHUB REPOSITORY
+                        AND NAME IT:
+
+                        profile.jpg
+                    -->
+
+                    <img
+                        src="profile.jpg"
+                        alt="Emmanuel Seth"
+                    >
+
+
+                    <div
+                        class="profile-colour"
+                    ></div>
+
+
+                    <div
+                        class="profile-fade"
+                    ></div>
+
+
+                    <div
+                        class="profile-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="profile-name">
+
+                    <h3>
+                        Emmanuel Seth
+                    </h3>
+
+                    <span>
+                        Designer · Developer
+                    </span>
+
+                </div>
+
+            </div>
 
 
             <a
@@ -1172,8 +1741,10 @@
 
 
             <h2 class="section-title">
+
                 WORK THAT<br>
                 SPEAKS.
+
             </h2>
 
 
@@ -1182,7 +1753,6 @@
 
                 <!-- =================================================
                      PROJECT 01
-                     KEEP YOUR EXISTING IMAGE HERE
                 ================================================= -->
 
                 <article
@@ -1208,9 +1778,11 @@
                             01 / Graphic Design
                         </span>
 
+
                         <h3>
                             Upcoming Programmes
                         </h3>
+
 
                         <span class="view-work">
                             View full work
@@ -1219,7 +1791,6 @@
                     </div>
 
                 </article>
-
 
 
                 <!-- =================================================
@@ -1249,9 +1820,11 @@
                             02 / Event Campaign
                         </span>
 
+
                         <h3>
                             3 Days Fasting & Prayers
                         </h3>
+
 
                         <span class="view-work">
                             View full work
@@ -1260,7 +1833,6 @@
                     </div>
 
                 </article>
-
 
 
                 <!-- =================================================
@@ -1290,9 +1862,11 @@
                             03 / Event Design
                         </span>
 
+
                         <h3>
                             Culinary Justice
                         </h3>
+
 
                         <span class="view-work">
                             View full work
@@ -1301,7 +1875,6 @@
                     </div>
 
                 </article>
-
 
 
                 <!-- =================================================
@@ -1331,9 +1904,11 @@
                             04 / Promotional Design
                         </span>
 
+
                         <h3>
                             Food Promotion & Fundraising
                         </h3>
+
 
                         <span class="view-work">
                             View full work
@@ -1342,7 +1917,6 @@
                     </div>
 
                 </article>
-
 
 
                 <!-- =================================================
@@ -1372,9 +1946,11 @@
                             05 / Event & Community
                         </span>
 
+
                         <h3>
                             LSU × NAMSA / Welcome to School
                         </h3>
+
 
                         <span class="view-work">
                             View full work
@@ -1385,11 +1961,9 @@
                 </article>
 
 
-
             </div>
 
         </section>
-
 
 
         <!-- =================================================
@@ -1409,9 +1983,12 @@
                         ABOUT ME
                     </p>
 
+
                     <h2 class="section-title">
+
                         CREATIVE<br>
                         THINKING.
+
                     </h2>
 
                 </div>
@@ -1420,21 +1997,26 @@
                 <div class="about-text">
 
                     <p>
+
                         I am a graphic designer and front-end
                         developer focused on creating clean,
                         purposeful and engaging visual experiences.
+
                     </p>
 
 
                     <p>
+
                         My work includes church event graphics,
                         programme promotions, campaign visuals,
                         social-media designs and responsive
                         websites.
+
                     </p>
 
 
                     <div class="stats">
+
 
                         <div class="stat">
 
@@ -1474,6 +2056,7 @@
 
                         </div>
 
+
                     </div>
 
                 </div>
@@ -1481,7 +2064,6 @@
             </div>
 
         </section>
-
 
 
         <!-- =================================================
@@ -1512,14 +2094,18 @@
                         01
                     </span>
 
+
                     <h3>
                         Graphic Design
                     </h3>
 
+
                     <p>
+
                         Posters, flyers, social-media graphics,
                         event campaigns and promotional visuals
                         designed around clear communication.
+
                     </p>
 
                 </div>
@@ -1531,14 +2117,18 @@
                         02
                     </span>
 
+
                     <h3>
                         Church & Ministry Media
                     </h3>
 
+
                     <p>
+
                         Creative visuals for church programmes,
                         campaigns, announcements, services and
                         ministry communication.
+
                     </p>
 
                 </div>
@@ -1550,14 +2140,18 @@
                         03
                     </span>
 
+
                     <h3>
                         Front-End Development
                     </h3>
 
+
                     <p>
+
                         Responsive websites built with HTML,
                         CSS and JavaScript with a strong focus
                         on clean visual presentation.
+
                     </p>
 
                 </div>
@@ -1569,14 +2163,18 @@
                         04
                     </span>
 
+
                     <h3>
                         Social Content
                     </h3>
 
+
                     <p>
+
                         Scroll-stopping content designed for
                         Instagram, Facebook, TikTok and other
                         digital platforms.
+
                     </p>
 
                 </div>
@@ -1585,7 +2183,6 @@
             </div>
 
         </section>
-
 
 
         <!-- =================================================
@@ -1603,8 +2200,10 @@
 
 
             <h2 class="section-title">
+
                 WHAT I<br>
                 WORK WITH.
+
             </h2>
 
 
@@ -1651,7 +2250,6 @@
         </section>
 
 
-
         <!-- =================================================
              CONTACT
         ================================================= -->
@@ -1667,15 +2265,19 @@
 
 
             <h2 class="contact-title">
+
                 LET'S<br>
                 <span>TALK.</span>
+
             </h2>
 
 
             <p class="contact-description">
+
                 Have a design project, church media job,
                 website or creative idea? Let's build
                 something meaningful.
+
             </p>
 
 
@@ -1683,13 +2285,14 @@
                 class="email"
                 href="mailto:your-email@example.com"
             >
-                Get in touch 
+
+                Get in touch ↗
+
             </a>
 
         </section>
 
     </main>
-
 
 
     <!-- =====================================================
@@ -1738,7 +2341,6 @@
     </div>
 
 
-
     <!-- =====================================================
          FOOTER
     ===================================================== -->
@@ -1749,12 +2351,12 @@
             © 2026 Emmanuel Seth Ohene Adjei
         </span>
 
+
         <span>
             Designed & built by Emmanuel.
         </span>
 
     </footer>
-
 
 
     <!-- =====================================================
@@ -1825,7 +2427,6 @@
             );
 
 
-
         /* =====================================================
            OPEN WORK
         ===================================================== */
@@ -1894,7 +2495,6 @@
         }
 
 
-
         /* =====================================================
            CLOSE WORK
         ===================================================== */
@@ -1929,7 +2529,6 @@
         }
 
 
-
         /* =====================================================
            PROJECT CLICK
         ===================================================== */
@@ -1950,7 +2549,6 @@
         );
 
 
-
         /* =====================================================
            CLOSE BUTTON
         ===================================================== */
@@ -1959,7 +2557,6 @@
             "click",
             closeWork
         );
-
 
 
         /* =====================================================
@@ -1981,7 +2578,6 @@
 
             }
         );
-
 
 
         /* =====================================================
@@ -2006,7 +2602,9 @@
             }
         );
 
+
     </script>
+
 
 </body>
 
